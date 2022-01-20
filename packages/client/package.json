@@ -1,7 +1,7 @@
 {
   "name": "@amqc/client",
   "description": "A type-safe AMQP client with auto-reconnect and auto-declare",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "keywords": [
     "amqp",
     "rabbit",
