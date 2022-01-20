@@ -1,0 +1,70 @@
+{
+  "name": "@amqc/client",
+  "description": "A type-safe AMQP client with auto-reconnect and auto-declare",
+  "version": "0.1.0",
+  "keywords": [
+    "amqp",
+    "rabbit",
+    "mq",
+    "connection",
+    "exchange",
+    "queue",
+    "sub",
+    "subscribe",
+    "pub",
+    "publish",
+    "rpc",
+    "consume",
+    "produce",
+    "message",
+    "route",
+    "router",
+    "routing",
+    "key",
+    "path",
+    "pattern"
+  ],
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "engines": {
+    "node": ">=14"
+  },
+  "author": "TY",
+  "license": "MIT",
+  "scripts": {
+    "build": "nb-tsc",
+    "clean": "nb-clean amqc-client*.tgz dist *.tsbuildinfo package",
+    "pretest": "npm run clean && npm run build",
+    "test": "npm run jest",
+    "jest": "jest --runInBand",
+    "verify": "npm pack && tar xf amqc-client*.tgz && tree package && npm run clean",
+    "tutorials:rabbit": "node ./tutorials/start-rabbit.js"
+  },
+  "dependencies": {
+    "@connback/amqp": "^0.1.8",
+    "@jil/common": "^0.2.9",
+    "@jil/inflight": "^0.1.2",
+    "amqplib": "^0.8.0",
+    "chainable-error": "^1.0.2",
+    "debug": "^4.3.3",
+    "tily": "^2.10.1",
+    "ts-essentials": "^9.1.2",
+    "tslib": "^2.3.1",
+    "uniqid": "^5.4.0"
+  },
+  "devDependencies": {
+    "@nutol/build": "^0.2.1",
+    "@nutol/eslint-config": "^0.2.0",
+    "@types/amqplib": "^0.8.2",
+    "@types/jest": "^27.4.0",
+    "@types/node": "^17.0.10",
+    "@types/uniqid": "^5.3.2",
+    "docker-cli-js": "^2.9.0"
+  },
+  "files": [
+    "README.md",
+    "dist",
+    "src",
+    "!*/__tests__"
+  ]
+}
