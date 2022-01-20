@@ -4,7 +4,7 @@ This contains @amqc/client version of the [RabbitMQ tutorials](https://www.rabbi
 
 The examples are provided in Javascript.
 
-## Pre-requirements
+## Run
 
 Start RabbitMQ server first
 

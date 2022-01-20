@@ -31,6 +31,11 @@
   },
   "author": "TY",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/taoyuan/amqc.git",
+    "directory": "packages/client"
+  },
   "scripts": {
     "build": "nb-tsc",
     "clean": "nb-clean amqc-client*.tgz dist *.tsbuildinfo package",

@@ -37,7 +37,7 @@ async function run() {
 run().catch(console.error);
 ```
 
-More examples can be found in the [tutorials directory](tutorials).
+More examples can be found in the [tutorials directory](https://github.com/taoyuan/amqc/tree/master/packages/client/tutorials).
 
 ### Connection Status
 
