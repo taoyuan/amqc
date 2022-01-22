@@ -16,7 +16,7 @@ import {Exchange} from './exchange';
 import {IncomingMessage, Message} from './message';
 import {DIRECT_REPLY_TO_QUEUE} from './consts';
 
-const debug = require('debug')('amqc:client:queue');
+const debug = require('debug')('hamqp:client:queue');
 
 export type OnMessage = (msg: IncomingMessage) => any;
 
@@ -88,7 +88,7 @@ export class Queue extends Actor {
           },
           err => {
             /* istanbul ignore */
-            reject(new Error('amqc/client: Queue.rpc error: ' + err.message));
+            reject(new Error('hamqp/client: Queue.rpc error: ' + err.message));
           },
         );
     });
@@ -126,7 +126,7 @@ export class Queue extends Actor {
   async consume(handler: OnMessage, options: QueueConsumeOptions = {}): Promise<QueueConsumeResult> {
     // eslint-disable-next-line @typescript-eslint/no-misused-promises
     if (this._consuming) {
-      throw new Error('amqc Queue.consume error: consumer already defined');
+      throw new Error('hamqp Queue.consume error: consumer already defined');
     }
     this.consumer = {handler: handler, options};
     return (this._consuming = this.doConsume());

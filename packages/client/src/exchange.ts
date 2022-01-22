@@ -14,7 +14,7 @@ import {Message} from './message';
 import {APP_NAME, DIRECT_REPLY_TO_QUEUE} from './consts';
 import {OnMessage} from './queue';
 
-const debug = require('debug')('amqc:client:exchange');
+const debug = require('debug')('hamqp:client:exchange');
 
 export class ExchangeDeclareError extends DeclareError {}
 
@@ -84,7 +84,7 @@ export class Exchange extends Actor {
     const queueName = this.consumerQueueName();
     if (this.connection.queues.has(queueName)) {
       return new Promise<void>((_, reject) => {
-        reject(new Error('amqc Exchange.consume error: consumer already defined'));
+        reject(new Error('hamqp Exchange.consume error: consumer already defined'));
       });
     } else {
       const promises: Promise<any>[] = [];

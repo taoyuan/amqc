@@ -6,7 +6,7 @@ import {Event} from '@jil/common/event';
 import {Exchange} from './exchange';
 import {Queue} from './queue';
 
-const debug = require('debug')('amqc:client:message');
+const debug = require('debug')('hamqp:client:message');
 
 export class Message {
   content: Buffer;

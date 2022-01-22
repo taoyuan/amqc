@@ -9,7 +9,7 @@ import {Binding} from './binding';
 import {Actors} from './actors';
 import {Actor} from './actor';
 
-const debug = require('debug')('amqc:client:connection');
+const debug = require('debug')('hamqp:client:connection');
 
 export class Connection extends AmqpConnback {
   exchanges = new Actors<Exchange>();

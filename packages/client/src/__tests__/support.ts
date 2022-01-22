@@ -1,7 +1,7 @@
 import {Connection} from '../connection';
 import {Rabbit} from './rabbit';
 
-const debug = require('debug')('amqc:client:test:support');
+const debug = require('debug')('hamqp:client:test:support');
 
 export const TestExchangeNamePrefix = process.env.AMQPTEST_EXCHANGE_PREFIX ?? 'TestExchange_';
 export const TestQueueNamePrefix = process.env.AMQPTEST_QUEUE_PREFIX ?? 'TestQueue_';
@@ -11,7 +11,7 @@ export const TestLongTimeout = 60000;
 let exchangeSeq = 0;
 let queueSeq = 0;
 
-export const rabbit = new Rabbit('amqc.amqp.test');
+export const rabbit = new Rabbit('hamqp.amqp.test');
 
 export function nextExchangeName() {
   return TestExchangeNamePrefix + ++exchangeSeq;

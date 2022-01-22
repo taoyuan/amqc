@@ -1,8 +1,9 @@
 {
-  "name": "@amqc/client",
-  "description": "A type-safe AMQP client with auto-reconnect and auto-declare",
+  "name": "@hamqp/client",
+  "description": "A High level type-safe AMQP client with auto-reconnect and auto-declare",
   "version": "0.1.1",
   "keywords": [
+    "amq",
     "amqp",
     "rabbit",
     "mq",
@@ -33,16 +34,16 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/taoyuan/amqc.git",
+    "url": "https://github.com/taoyuan/hamqp.git",
     "directory": "packages/client"
   },
   "scripts": {
     "build": "nb-tsc",
-    "clean": "nb-clean amqc-client*.tgz dist *.tsbuildinfo package",
+    "clean": "nb-clean hamqp-client*.tgz dist *.tsbuildinfo package",
     "pretest": "npm run clean && npm run build",
     "test": "npm run jest",
     "jest": "jest --runInBand",
-    "verify": "npm pack && tar xf amqc-client*.tgz && tree package && npm run clean",
+    "verify": "npm pack && tar xf hamqp-client*.tgz && tree package && npm run clean",
     "tutorials:rabbit": "node ./tutorials/start-rabbit.js"
   },
   "dependencies": {

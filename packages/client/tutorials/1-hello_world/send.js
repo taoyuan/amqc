@@ -1,5 +1,5 @@
-// import * as amqp from '@amqc/client'; // normal ts use
-// const amqp = require('@amqc/client'); // normal js use
+// import * as amqp from '@hamqp/client'; // normal ts use
+// const amqp = require('@hamqp/client'); // normal js use
 const amqp = require('../..');
 
 async function main() {
