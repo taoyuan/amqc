@@ -1,7 +1,7 @@
 {
   "name": "@hamq/bus",
   "description": "A simple message routing helper for AMQP",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "keywords": [
     "amq",
     "amqp",
@@ -29,12 +29,12 @@
     "verify": "npm pack && tar xf hamq-bus*.tgz && tree package && npm run clean"
   },
   "dependencies": {
-    "@hamq/client": "^0.1.1",
+    "@hamq/client": "^0.1.2",
     "debug": "^4.3.3",
     "routery": "^0.1.5"
   },
   "devDependencies": {
-    "@hamq/testlab": "^0.1.0",
+    "@hamq/testlab": "^0.1.1",
     "@jil/common": "^0.2.10",
     "@nutol/build": "^0.2.1",
     "@nutol/eslint-config": "^0.2.0",
