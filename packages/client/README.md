@@ -1,4 +1,4 @@
-# @hamqp/client
+# @hamq/client
 
 > A simple and elegant AMQP client written by TypeScript
 >
@@ -9,8 +9,8 @@
 ### An example
 
 ```ts
-import * as amqp from '@hamqp/client';
-// const amqp = require("@hamqp/client"); // js require
+import * as amqp from '@hamq/client';
+// const amqp = require("@hamq/client"); // js require
 
 async function run() {
   const connection = new amqp.Connection('amqp://localhost');
@@ -38,7 +38,7 @@ run().catch(console.error);
 ```
 
 More examples can be found in the
-[tutorials directory](https://github.com/taoyuan/hamqp/tree/master/packages/client/tutorials).
+[tutorials directory](https://github.com/taoyuan/hamq/tree/master/packages/client/tutorials).
 
 ### Connection Status
 

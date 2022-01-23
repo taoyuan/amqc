@@ -1,4 +1,4 @@
-//const amqp = require('@hamqp/client'); // normal use
+//const amqp = require('@hamq/client'); // normal use
 const amqp = require('../..'); // for use inside this package
 
 // Usage: receive_logs_topic.js <facility>.<severity>

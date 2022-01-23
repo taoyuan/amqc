@@ -5,29 +5,29 @@ import {assert} from 'tily/assert';
 import {Event} from '@jil/common/event';
 import {Exchange} from './exchange';
 import {Queue} from './queue';
+import {MessageFields, MessageProperties} from './types';
 
-const debug = require('debug')('hamqp:client:message');
+const debug = require('debug')('hamq:client:message');
 
 export class Message {
   content: Buffer;
-  fields: any;
-  properties: any;
+  properties: Partial<MessageProperties>;
 
-  constructor(content?: any, options: any = {}) {
-    this.properties = options;
+  constructor(content?: any, properties?: Partial<MessageProperties>) {
+    this.properties = properties ?? {};
     if (content !== undefined) {
       this.setContent(content);
     }
   }
 
   setContent(content: any): void {
-    if (typeof content === 'string') {
+    if (Buffer.isBuffer(content)) {
+      this.content = content;
+    } else if (typeof content === 'string') {
       this.content = Buffer.from(content);
-    } else if (!(content instanceof Buffer)) {
+    } else {
       this.content = Buffer.from(JSON.stringify(content));
       this.properties.contentType = 'application/json';
-    } else {
-      this.content = content;
     }
   }
 
@@ -83,8 +83,13 @@ export class Message {
 }
 
 export class IncomingMessage extends Message {
-  constructor(readonly channel: AmqpLib.Channel, readonly message: AmqpLib.Message, content?: any, options: any = {}) {
-    super(content, options);
+  readonly content: Buffer;
+  readonly fields: MessageFields;
+  readonly properties: MessageProperties;
+
+  constructor(readonly channel: AmqpLib.Channel, readonly message: AmqpLib.Message) {
+    super(message.content, message.properties);
+    this.fields = message.fields;
   }
 
   ack(allUpTo?: boolean): void {

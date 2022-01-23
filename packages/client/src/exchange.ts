@@ -10,11 +10,11 @@ import {Actor} from './actor';
 import {ExchangeDeclareOptions, ExchangeDeclareResult, QueueConsumeOptions} from './types';
 import {DeclareError} from './errors';
 import {Binding} from './binding';
-import {Message} from './message';
+import {IncomingMessage, Message} from './message';
 import {APP_NAME, DIRECT_REPLY_TO_QUEUE} from './consts';
 import {OnMessage} from './queue';
 
-const debug = require('debug')('hamqp:client:exchange');
+const debug = require('debug')('hamq:client:exchange');
 
 export class ExchangeDeclareError extends DeclareError {}
 
@@ -84,7 +84,7 @@ export class Exchange extends Actor {
     const queueName = this.consumerQueueName();
     if (this.connection.queues.has(queueName)) {
       return new Promise<void>((_, reject) => {
-        reject(new Error('hamqp Exchange.consume error: consumer already defined'));
+        reject(new Error('hamq Exchange.consume error: consumer already defined'));
       });
     } else {
       const promises: Promise<any>[] = [];
@@ -175,9 +175,8 @@ export class Exchange extends Actor {
         DIRECT_REPLY_TO_QUEUE,
         msg => {
           if (!msg) return;
-
-          const result = new Message(msg.content, msg.fields);
-          result.fields = msg.fields;
+          assert(this.channel);
+          const result = new IncomingMessage(this.channel, msg);
           this.rpcInflight?.resolve(msg.properties.correlationId, result);
         },
         {noAck: true},

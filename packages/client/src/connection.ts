@@ -2,19 +2,21 @@
 
 import {Event} from '@jil/common/event';
 import {AmqpConnback, AmqpConnbackOpts, AmqpConnection, AmqpConnectOpts} from '@connback/amqp';
-import {ExchangeDeclareOptions, QueueDeclarationOptions, Topology} from './types';
+import {ExchangeDeclareOptions, QueueDeclareOptions, Topology} from './types';
 import {Exchange} from './exchange';
 import {Queue} from './queue';
 import {Binding} from './binding';
 import {Actors} from './actors';
 import {Actor} from './actor';
 
-const debug = require('debug')('hamqp:client:connection');
+const debug = require('debug')('hamq:client:connection');
+
+export {AmqpConnectOpts, AmqpConnbackOpts};
 
 export class Connection extends AmqpConnback {
-  exchanges = new Actors<Exchange>();
-  queues = new Actors<Queue>();
-  bindings = new Actors<Binding>();
+  readonly exchanges = new Actors<Exchange>();
+  readonly queues = new Actors<Queue>();
+  readonly bindings = new Actors<Binding>();
 
   protected _ready?: Promise<unknown>;
   private readonly url: string | AmqpConnectOpts;
@@ -92,7 +94,7 @@ export class Connection extends AmqpConnback {
     return exchange;
   }
 
-  declareQueue(name: string, options?: QueueDeclarationOptions): Queue {
+  declareQueue(name: string, options?: QueueDeclareOptions): Queue {
     debug('declare queue', {name, options});
     let queue = this.queues.get(name);
     if (!queue) {
@@ -137,4 +139,13 @@ export class Connection extends AmqpConnback {
     }
     return Promise.all(promises);
   }
+}
+
+export function isAmqpConnection(x: any): x is Connection {
+  return (
+    x &&
+    typeof x.declareExchange === 'function' &&
+    typeof x.declareQueue === 'function' &&
+    typeof x.declareTopology === 'function'
+  );
 }

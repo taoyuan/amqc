@@ -6,7 +6,7 @@ import {DeclareError} from './errors';
 import {defer, DeferredPromise} from '@jil/common/async/defer';
 import noop from 'tily/function/noop';
 
-const debug = require('debug')('hamqp:client:actor');
+const debug = require('debug')('hamq:client:actor');
 
 export abstract class Actor extends BaseDisposable {
   connection?: Connection;

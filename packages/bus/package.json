@@ -1,0 +1,50 @@
+{
+  "name": "@hamq/bus",
+  "description": "A simple message routing helper for AMQP",
+  "version": "0.1.0",
+  "keywords": [
+    "amq",
+    "amqp",
+    "bus",
+    "route",
+    "router",
+    "routing",
+    "handler",
+    "message",
+    "subscribe"
+  ],
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "engines": {
+    "node": ">=14"
+  },
+  "author": "TY",
+  "license": "MIT",
+  "scripts": {
+    "build": "nb-tsc",
+    "clean": "nb-clean hamq-bus*.tgz dist *.tsbuildinfo package",
+    "pretest": "npm run clean && npm run build",
+    "test": "npm run jest",
+    "jest": "jest",
+    "verify": "npm pack && tar xf hamq-bus*.tgz && tree package && npm run clean"
+  },
+  "dependencies": {
+    "@hamq/client": "^0.1.1",
+    "debug": "^4.3.3",
+    "routery": "^0.1.5"
+  },
+  "devDependencies": {
+    "@hamq/testlab": "^0.1.0",
+    "@jil/common": "^0.2.10",
+    "@nutol/build": "^0.2.1",
+    "@nutol/eslint-config": "^0.2.0",
+    "@types/jest": "^27.4.0",
+    "@types/node": "^17.0.10"
+  },
+  "files": [
+    "README.md",
+    "dist",
+    "src",
+    "!*/__tests__"
+  ]
+}

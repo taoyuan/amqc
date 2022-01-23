@@ -7,7 +7,7 @@ import {Exchange} from './exchange';
 import {Queue} from './queue';
 import {DeclareError} from './errors';
 
-const debug = require('debug')('hamqp:client:binding');
+const debug = require('debug')('hamq:client:binding');
 
 export class BindingDeclareError extends DeclareError {}
 

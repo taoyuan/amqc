@@ -5,4 +5,4 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## 0.1.1 (2022-01-20)
 
-**Note:** Version bump only for package @hamqp/client
+**Note:** Version bump only for package @hamq/client

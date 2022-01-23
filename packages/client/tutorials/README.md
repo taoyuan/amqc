@@ -1,6 +1,6 @@
 # RabbitMQ Tutorials
 
-This contains @hamqp/client version of the [RabbitMQ tutorials](https://www.rabbitmq.com/getstarted.html).
+This contains @hamq/client version of the [RabbitMQ tutorials](https://www.rabbitmq.com/getstarted.html).
 
 The examples are provided in Javascript.
 

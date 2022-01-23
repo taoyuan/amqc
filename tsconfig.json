@@ -5,7 +5,13 @@
   },
   "references": [
     {
+      "path": "packages/bus/tsconfig.json"
+    },
+    {
       "path": "packages/client/tsconfig.json"
+    },
+    {
+      "path": "packages/testlab/tsconfig.json"
     }
   ],
   "files": []

@@ -5,7 +5,7 @@ import {Connection} from './connection';
 import {
   QueueConsumeOptions,
   QueueConsumeResult,
-  QueueDeclarationOptions,
+  QueueDeclareOptions,
   QueueDeclareResult,
   QueueDeleteResult,
 } from './types';
@@ -16,9 +16,9 @@ import {Exchange} from './exchange';
 import {IncomingMessage, Message} from './message';
 import {DIRECT_REPLY_TO_QUEUE} from './consts';
 
-const debug = require('debug')('hamqp:client:queue');
+const debug = require('debug')('hamq:client:queue');
 
-export type OnMessage = (msg: IncomingMessage) => any;
+export type OnMessage = (msg: IncomingMessage) => any | Promise<any>;
 
 export class QueueDeclareError extends DeclareError {}
 
@@ -31,7 +31,7 @@ export class Queue extends Actor {
     options: QueueConsumeOptions;
   };
 
-  constructor(connection: Connection, id: string, public options: QueueDeclarationOptions = {}) {
+  constructor(connection: Connection, id: string, public options: QueueDeclareOptions = {}) {
     super(connection, id);
     this.attach();
   }
@@ -73,9 +73,7 @@ export class Queue extends Actor {
             this.channel.cancel(consumerTag).catch(e => reject(e));
 
             assert(msg);
-            const result = new Message(msg.content, msg.fields);
-            result.fields = msg.fields;
-            resolve(result);
+            resolve(new IncomingMessage(this.channel, msg));
           },
           {noAck: true},
         )
@@ -88,7 +86,7 @@ export class Queue extends Actor {
           },
           err => {
             /* istanbul ignore */
-            reject(new Error('hamqp/client: Queue.rpc error: ' + err.message));
+            reject(new Error('hamq/client: Queue.rpc error: ' + err.message));
           },
         );
     });
@@ -126,7 +124,7 @@ export class Queue extends Actor {
   async consume(handler: OnMessage, options: QueueConsumeOptions = {}): Promise<QueueConsumeResult> {
     // eslint-disable-next-line @typescript-eslint/no-misused-promises
     if (this._consuming) {
-      throw new Error('hamqp Queue.consume error: consumer already defined');
+      throw new Error('hamq Queue.consume error: consumer already defined');
     }
     this.consumer = {handler: handler, options};
     return (this._consuming = this.doConsume());
@@ -182,8 +180,7 @@ export class Queue extends Actor {
       assert(this.channel);
       assert(this.consumer);
       try {
-        const message = new IncomingMessage(this.channel, msg, msg.content, msg.properties);
-        message.fields = msg.fields;
+        const message = new IncomingMessage(this.channel, msg);
         try {
           let result = await this.consumer.handler(message);
           // check if there is a reply-to

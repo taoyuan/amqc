@@ -1,8 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import * as AmqpLib from 'amqplib';
 
-import {MarkRequired} from 'ts-essentials';
-
-export interface QueueDeclarationOptions {
+export interface QueueDeclareOptions {
   exclusive?: boolean;
   durable?: boolean;
   autoDelete?: boolean;
@@ -58,8 +57,8 @@ export interface TopologyBinding {
   args?: any;
 }
 
-export type TopologyBindingQueue = MarkRequired<TopologyBinding, 'queue'>;
-export type TopologyBindingExchange = MarkRequired<TopologyBinding, 'exchange'>;
+export type TopologyBindingQueue = TopologyBinding & Required<Pick<TopologyBinding, 'queue'>>;
+export type TopologyBindingExchange = TopologyBinding & Required<Pick<TopologyBinding, 'exchange'>>;
 
 export interface Topology {
   exchanges: TopologyExchange[];
@@ -79,3 +78,6 @@ export interface ExchangeDeclareOptions {
 export interface ExchangeDeclareResult {
   exchange: string;
 }
+
+export type MessageFields = AmqpLib.MessageFields;
+export type MessageProperties = AmqpLib.MessageProperties;

@@ -1,7 +1,7 @@
 {
-  "name": "hamqp",
+  "name": "hamq",
   "version": "0.1.0",
-  "description": "A high level AMQP library with auto-reconnect, auto-restore declaring, enhanced router and so on.",
+  "description": "A High level AMQP library with auto-reconnect, auto-restore declaring, enhanced router and so on.",
   "private": true,
   "engines": {
     "node": ">=14"
