@@ -168,7 +168,7 @@ export class Queue extends Actor {
   }
 
   protected async doConsume(): Promise<QueueConsumeResult> {
-    debug('<%s> doActivateConsumer', this.id);
+    debug('<%s> doConsume', this.id);
     const consumeWrapper = async (msg: AmqpLib.Message | null) => {
       if (msg == null) {
         // consumer has been canceled

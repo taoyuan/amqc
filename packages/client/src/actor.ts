@@ -144,10 +144,8 @@ export abstract class Actor extends BaseDisposable {
         d.reject(err);
       });
 
-    // d.finally(() => (this._declaring = false));
-
-    d.then(result => {
-      debug(`<%s> declared`, this.id, result);
+    d.then(() => {
+      debug(`<%s> declared`, this.id);
       // noop error handler to avoid promise unhandled error. we can handle the exception with await .declared or await .ready()
     }, noop).finally(() => (this._declaring = false));
   }
