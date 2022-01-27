@@ -238,6 +238,7 @@ export class Queue extends Actor {
         debug(`<%s> prefetch ${this.options.prefetch}`, this.id);
         await this.channel.prefetch(this.options.prefetch);
       }
+      this.id = result.queue;
       debug('<%s> declare result', this.id, result);
       return result;
     } catch (e) {

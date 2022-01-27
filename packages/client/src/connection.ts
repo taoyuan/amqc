@@ -8,6 +8,7 @@ import {Queue} from './queue';
 import {Binding} from './binding';
 import {Actors} from './actors';
 import {Actor} from './actor';
+import {genName} from './utils';
 
 const debug = require('debug')('hamq:client:connection');
 
@@ -94,7 +95,8 @@ export class Connection extends AmqpConnback {
     return exchange;
   }
 
-  declareQueue(name: string, options?: QueueDeclareOptions): Queue {
+  declareQueue(name?: string, options?: QueueDeclareOptions): Queue {
+    name = name ?? genName('queue');
     debug('declare queue', {name, options});
     let queue = this.queues.get(name);
     if (!queue) {

@@ -5,6 +5,7 @@ import {Connection} from './connection';
 import {DeclareError} from './errors';
 import {defer, DeferredPromise} from '@jil/common/async/defer';
 import noop from 'tily/function/noop';
+import {genName} from './utils';
 
 const debug = require('debug')('hamq:client:actor');
 
@@ -14,11 +15,11 @@ export abstract class Actor extends BaseDisposable {
   protected deferredDeclare = defer();
   protected deferredUndeclare?: DeferredPromise<any>;
 
-  protected constructor(connection: Connection, id: string) {
+  protected constructor(connection: Connection, id?: string) {
     super();
 
     this.connection = connection;
-    this.id = id;
+    this.id = id ?? genName(this.constructor.name);
 
     connection.onclose(
       () => {
