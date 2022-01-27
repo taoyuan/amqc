@@ -1,7 +1,7 @@
 {
   "name": "@hamq/pubsub",
   "description": "A simple message routing helper for AMQP",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "keywords": [
     "amq",
     "amqp",
