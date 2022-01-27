@@ -84,8 +84,9 @@ export class Bus {
     await queue.bind(this.exchange, route.topic);
 
     await queue.consume(async message => {
+      debug('received message form queue', this.options.queue);
       await router.handle(message.fields.routingKey, message);
-      debug('queue', this.options.queue);
+      debug('handled message form queue', this.options.queue);
       if (this.options.autoAck) {
         debug('autoAck', 'true');
         message.ack();
