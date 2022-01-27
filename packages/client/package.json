@@ -1,7 +1,7 @@
 {
   "name": "@hamq/client",
   "description": "A High level type-safe AMQP client with auto-reconnect and auto-declare",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "keywords": [
     "amq",
     "amqp",
