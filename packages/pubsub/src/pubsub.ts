@@ -50,15 +50,20 @@ export class PubSub {
    *
    */
   async subscribe(path: string, handler: AmqpRouteHandler): Promise<Subscription>;
+  async subscribe(path: string, queue: string, handler: AmqpRouteHandler): Promise<Subscription>;
+  // eslint-disable-next-line @typescript-eslint/unified-signatures
   async subscribe(path: string, opts: SubscriptionOpts, handler: AmqpRouteHandler): Promise<Subscription>;
   async subscribe(
     path: string,
-    opts: SubscriptionOpts | AmqpRouteHandler,
+    opts: SubscriptionOpts | AmqpRouteHandler | string,
     handler?: AmqpRouteHandler,
   ): Promise<Subscription> {
     if (typeof opts === 'function') {
       handler = opts;
       opts = {};
+    }
+    if (typeof opts === 'string') {
+      opts = {queue: opts};
     }
     opts = {...this.options.subscription, ...opts};
     debug('subscribe', opts.queue, this.options.exchange, path);

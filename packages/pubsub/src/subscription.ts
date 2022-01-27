@@ -9,7 +9,6 @@ export interface SubscriptionOpts extends QueueDeclareOptions {
 }
 
 const DefaultSubscriptionOpts: SubscriptionOpts = {
-  queue: 'queue123',
   autoAck: false,
   durable: true,
   autoDelete: false,
@@ -49,15 +48,18 @@ export class Subscription {
     }
 
     debug('subscribe', this.opts, this.exchange.id, this.path);
+
     const route = new AmqpRoute(this.path);
     debug('routingKey', route.topic);
 
-    const queue = (this.queue = this.connection.declareQueue(this.opts.queue!, this.opts));
+    const queueName = this.opts.queue;
+
+    const queue = (this.queue = this.connection.declareQueue(queueName, this.opts));
     await queue.bind(this.exchange, route.topic);
 
     await queue.consume(async message => {
       const {routingKey} = message.fields;
-      debug('received message from queue "%s" with routing key "%s"', this.opts.queue, message.fields.routingKey);
+      debug('received message from queue "%s" with routing key "%s"', queueName, message.fields.routingKey);
       const params = route.match(routingKey);
       if (!params) {
         throw new Error(
@@ -65,7 +67,7 @@ export class Subscription {
         );
       }
       this.handler(params, message);
-      debug('handled message from queue "%s" with routing key "%s"', this.opts.queue, message.fields.routingKey);
+      debug('handled message from queue "%s" with routing key "%s"', queueName, message.fields.routingKey);
       if (this.opts.autoAck) {
         debug('autoAck', 'true');
         message.ack();
