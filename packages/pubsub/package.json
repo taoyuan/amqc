@@ -1,11 +1,11 @@
 {
-  "name": "@hamq/bus",
+  "name": "@hamq/pubsub",
   "description": "A simple message routing helper for AMQP",
   "version": "0.1.5",
   "keywords": [
     "amq",
     "amqp",
-    "bus",
+    "pubsub",
     "route",
     "router",
     "routing",
@@ -22,11 +22,11 @@
   "license": "MIT",
   "scripts": {
     "build": "nb-tsc",
-    "clean": "nb-clean hamq-bus*.tgz dist *.tsbuildinfo package",
+    "clean": "nb-clean hamq-pubsub*.tgz dist *.tsbuildinfo package",
     "pretest": "npm run clean && npm run build",
     "test": "npm run jest",
     "jest": "jest",
-    "verify": "npm pack && tar xf hamq-bus*.tgz && tree package && npm run clean"
+    "verify": "npm pack && tar xf hamq-pubsub*.tgz && tree package && npm run clean"
   },
   "dependencies": {
     "@hamq/client": "^0.1.5",

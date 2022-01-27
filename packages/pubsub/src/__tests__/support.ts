@@ -1,10 +1,10 @@
 import {Rabbit} from '@hamq/testlab';
-import {Bus} from '../bus';
+import {PubSub} from '../pubsub';
 
 export const rabbit = new Rabbit();
 
-export function givenBus() {
-  return new Bus(rabbit.url, {
+export function givenPubSub() {
+  return new PubSub(rabbit.url, {
     jitter: 'none',
     delayFirstAttempt: true,
   });
