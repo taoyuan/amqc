@@ -5,6 +5,8 @@ export class Rabbit {
 
   protected docker = new Docker();
 
+  static Timeout = 30000;
+
   constructor(readonly name: string = 'hamq.test', readonly port = 5673, readonly managePort = 15673) {
     this.url = `amqp://localhost:${port}`;
   }
@@ -19,6 +21,7 @@ export class Rabbit {
       await this.docker.command(
         `run -d --name ${this.name} -p ${this.port}:5672 -p ${this.managePort}:15672 rabbitmq:management`,
       );
+      await new Promise(resolve => setTimeout(() => resolve(undefined), 10000));
     }
   }
 
