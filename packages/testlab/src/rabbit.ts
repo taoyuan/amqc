@@ -18,10 +18,14 @@ export class Rabbit {
 
   async run() {
     if (!(await this.check())) {
-      await this.docker.command(
-        `run -d --name ${this.name} -p ${this.port}:5672 -p ${this.managePort}:15672 rabbitmq:management`,
-      );
-      await new Promise(resolve => setTimeout(() => resolve(undefined), 10000));
+      try {
+        await this.docker.command(
+          `run -d --name ${this.name} -p ${this.port}:5672 -p ${this.managePort}:15672 rabbitmq:management`,
+        );
+        await new Promise(resolve => setTimeout(() => resolve(undefined), 10000));
+      } catch (e) {
+        await this.docker.command(`start ${this.name}`);
+      }
     }
   }
 
