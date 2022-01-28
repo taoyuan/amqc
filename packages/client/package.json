@@ -1,7 +1,7 @@
 {
   "name": "@hamq/client",
   "description": "A High level type-safe AMQP client with auto-reconnect and auto-declare",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "keywords": [
     "amq",
     "amqp",
@@ -57,7 +57,7 @@
     "uniqid": "^5.4.0"
   },
   "devDependencies": {
-    "@hamq/testlab": "^0.1.4",
+    "@hamq/testlab": "^0.1.5",
     "@nutol/build": "^0.2.1",
     "@nutol/eslint-config": "^0.2.0",
     "@types/amqplib": "^0.8.2",
