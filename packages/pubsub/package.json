@@ -31,15 +31,15 @@
   "dependencies": {
     "@hamq/client": "^0.1.8",
     "debug": "^4.3.3",
-    "routery": "^0.1.5"
+    "routery": "^0.1.6"
   },
   "devDependencies": {
     "@hamq/testlab": "^0.1.5",
-    "@jil/common": "^0.2.13",
-    "@nutol/build": "^0.2.1",
-    "@nutol/eslint-config": "^0.2.0",
+    "@jil/common": "^0.2.23",
+    "@nutol/build": "^0.2.4",
+    "@nutol/eslint-config": "^0.2.1",
     "@types/jest": "^27.4.0",
-    "@types/node": "^17.0.12"
+    "@types/node": "^17.0.18"
   },
   "files": [
     "README.md",

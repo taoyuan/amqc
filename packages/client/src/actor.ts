@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import {BaseDisposable} from '@jil/common/lifecycle/disposable';
+import {DisposableObject} from '@jil/common/lifecycle/disposable';
 import {Connection} from './connection';
 import {DeclareError} from './errors';
 import {defer, DeferredPromise} from '@jil/common/async/defer';
@@ -9,7 +9,7 @@ import {genName} from './utils';
 
 const debug = require('debug')('hamq:client:actor');
 
-export abstract class Actor extends BaseDisposable {
+export abstract class Actor extends DisposableObject {
   connection?: Connection;
   id: string;
   protected deferredDeclare = defer();
