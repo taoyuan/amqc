@@ -1,7 +1,7 @@
 {
   "name": "@hamq/pubsub",
   "description": "A simple message routing helper for AMQP",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "keywords": [
     "amq",
     "amqp",
@@ -29,12 +29,12 @@
     "verify": "npm pack && tar xf hamq-pubsub*.tgz && tree package && npm run clean"
   },
   "dependencies": {
-    "@hamq/client": "^0.1.8",
+    "@hamq/client": "^0.1.9",
     "debug": "^4.3.3",
     "routery": "^0.1.6"
   },
   "devDependencies": {
-    "@hamq/testlab": "^0.1.5",
+    "@hamq/testlab": "^0.1.6",
     "@jil/common": "^0.2.23",
     "@nutol/build": "^0.2.4",
     "@nutol/eslint-config": "^0.2.1",
